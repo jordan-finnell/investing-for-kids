@@ -171,10 +171,10 @@ def render() -> None:
     metric_cols[1].metric("Money you put in", _format_currency(total_put_in))
     metric_cols[2].metric("Interest earned", _format_currency(final["interest_to_date"]))
 
-    st.plotly_chart(_balance_chart(daily), use_container_width=True)
+    st.plotly_chart(_balance_chart(daily), width="stretch")
     st.plotly_chart(
         _principal_vs_interest_chart(daily, starting_balance),
-        use_container_width=True,
+        width="stretch",
     )
 
     period = st.radio(
@@ -188,5 +188,5 @@ def render() -> None:
     st.dataframe(
         _period_table(daily, starting_balance, period_key),
         hide_index=True,
-        use_container_width=True,
+        width="stretch",
     )

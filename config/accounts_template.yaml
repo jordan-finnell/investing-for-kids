@@ -1,0 +1,34 @@
+# Reference template for config/accounts.yaml.
+# Copy this file (or the fields you want) into accounts.yaml and edit in place.
+# All keys shown below are consumed by accounts/config.py.
+
+accounts:
+  # Each child is a top-level key under `accounts`. The key is used as the
+  # filename for the ledger CSV (data/ledgers/<key>.csv), so keep it simple
+  # and lowercase.
+  example_child:
+    display_name: Example Child          # Shown as the tab label and page header.
+    seed_balance: 100.00                 # Starting balance (dollars). Written as the first ledger row.
+    seed_date: 2026-04-22                # ISO date. Only used when the ledger CSV doesn't yet exist.
+    annual_rate: 0.08                    # Decimal — 0.08 == 8% APR. Editable any time; affects future rows only.
+
+    # Optional list of repeating deposits. Omit the key or use `[]` for none.
+    recurring_contributions:
+
+      # --- Weekly example ---
+      # Fires once per week on the named weekday.
+      - amount: 10.00                    # Dollars per firing.
+        cadence: weekly                  # "weekly" or "monthly".
+        anchor: monday                   # For weekly: weekday name (monday..sunday, case-insensitive).
+        start_date: 2026-04-22           # First date the schedule is eligible to fire.
+        end_date: null                   # Optional. null = open-ended. Otherwise an ISO date (inclusive).
+
+      # --- Monthly example ---
+      # Fires once per month on the given day-of-month.
+      # If the DOM exceeds the month's length (e.g. 31 in February), it fires
+      # on the last day of that month instead.
+      - amount: 25.00
+        cadence: monthly
+        anchor: 1                        # For monthly: day-of-month as an integer (1..31).
+        start_date: 2026-05-01
+        end_date: 2030-12-31             # Concrete end date — contributions stop after this day.

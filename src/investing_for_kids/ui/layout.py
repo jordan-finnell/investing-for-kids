@@ -2,23 +2,23 @@
 
 import streamlit as st
 
+from investing_for_kids.accounts import views as account_views
+from investing_for_kids.accounts.config import load_accounts
 from investing_for_kids.theoretical import views as theoretical_views
 
 
 def render() -> None:
-    """Render the top-level tabbed layout: Theory, Child A, Child B."""
+    """Render the top-level tabbed layout: Theory + one tab per configured child."""
     st.set_page_config(page_title="Investing for Kids", layout="wide")
     st.title("Investing for Kids")
 
-    theory_tab, child_a_tab, child_b_tab = st.tabs(["Theory", "Child A", "Child B"])
+    accounts = load_accounts()
+    tab_names = ["Theory"] + [acc.display_name for acc in accounts.values()]
+    tabs = st.tabs(tab_names)
 
-    with theory_tab:
+    with tabs[0]:
         theoretical_views.render()
 
-    with child_a_tab:
-        st.header("Child A's account")
-        st.info("Coming in Phase 3 — balance, transactions, history.")
-
-    with child_b_tab:
-        st.header("Child B's account")
-        st.info("Coming in Phase 3 — balance, transactions, history.")
+    for tab, account in zip(tabs[1:], accounts.values(), strict=True):
+        with tab:
+            account_views.render(account)
