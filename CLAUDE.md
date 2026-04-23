@@ -84,6 +84,18 @@ closing_balance = post_txn + interest
 - No external services, no auth, no multi-user concerns.
 - Streamlit widgets: use the modern `width="stretch"` API, not the deprecated `use_container_width=True`.
 
+## Slide deck
+
+A standalone HTML intro deck for the kids lives under `deck/` — separate from the Streamlit app. Open `deck/index.html` directly in a browser.
+
+- `deck/index.html` / `deck/styles.css` — reveal.js via CDN, 6 slides, kid-friendly palette.
+- `deck/data/*.csv` — committed monthly price snapshots (NFLX, NVDA, ^GSPC).
+- `deck/charts/*.html` — pre-rendered interactive Plotly fragments; the deck embeds them via `<iframe>`.
+- `src/investing_for_kids/stocks/fetch_prices.py` — yfinance one-shot. Entry: `python -m investing_for_kids.stocks.fetch_prices`.
+- `src/investing_for_kids/stocks/build_charts.py` — builds Plotly HTML fragments into `deck/charts/`; also prints start/end prices and "$100 growth" multipliers for pasting into slide text. Entry: `python -m investing_for_kids.stocks.build_charts`.
+
+Refresh workflow: `uv pip install -e .[deck]`, then run the two modules in order. Commit the resulting CSVs and HTML fragments.
+
 ## Workflow
 
 - Each phase of work lands as its own PR off `main`, squash-merged.

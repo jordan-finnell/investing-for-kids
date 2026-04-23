@@ -63,6 +63,28 @@ Adding a new child is just a new top-level key under `accounts:` — the app pic
 - `config/accounts.yaml` — per-child rate, seed, recurring contributions
 - `config/accounts_template.yaml` — reference documenting every supported key
 - `data/ledgers/<child>.csv` — per-child daily ledger (one row per day)
+- `deck/` — standalone HTML slide deck intro for the kids (reveal.js + Plotly charts)
+- `src/investing_for_kids/stocks/` — yfinance data fetch + Plotly chart builders for the deck
+
+## Slide deck
+
+A short intro deck for the kids lives under `deck/` — open `deck/index.html` in a browser to view.
+
+- Six slides (title → hook → what's a stock → Netflix/Nvidia price history → S&P 500 as the safer approach → wrap-up) in a first-person parent voice.
+- Charts are pre-rendered interactive Plotly HTML fragments embedded via `<iframe>`.
+- Built on [reveal.js](https://revealjs.com/) via CDN — no build step.
+
+### Refreshing the data
+
+The deck's chart data (`deck/data/*.csv`) is committed as a snapshot. To pull fresh prices from yfinance and rebuild the charts:
+
+```bash
+uv pip install -e .[deck]
+python -m investing_for_kids.stocks.fetch_prices
+python -m investing_for_kids.stocks.build_charts
+```
+
+The `build_charts` script prints start/end prices and "$100 growth" multipliers — paste the new numbers into `deck/index.html` when they shift meaningfully.
 
 ## Resetting an account
 

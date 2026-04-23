@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grow Your Money!</title>
+
+  <!-- reveal.js core -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme">
+
+  <!-- Local overrides -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============================================================ -->
+      <!-- Slide 1: Title                                                -->
+      <!-- ============================================================ -->
+      <section class="title-slide">
+        <h1>Grow Your Money!</h1>
+        <p class="subtitle">A quick intro for Child A &amp; Child B</p>
+        <p class="presenter">— Dad</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Slide 2: Hook                                                 -->
+      <!-- ============================================================ -->
+      <section class="hook-slide">
+        <h2>Wait… money can <em>grow</em>?!</h2>
+        <img class="gif"
+             src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
+             alt="mind blown">
+        <p class="callout">Yeah. I want to show you how.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Slide 3: What are stocks?                                     -->
+      <!-- ============================================================ -->
+      <section class="concept-slide">
+        <h2>What's a stock?</h2>
+        <div class="concept-layout">
+          <div class="concept-text">
+            <p>
+              When a company wants to grow, they sell tiny slices of
+              themselves called <strong>stocks</strong>.
+            </p>
+            <p>
+              If you own one, you own a little sliver of the company.
+              If the company gets more valuable, your slice does too.
+            </p>
+          </div>
+          <!-- Pizza pie: a visual metaphor for ownership slices. -->
+          <svg class="pizza" viewBox="0 0 200 200" aria-label="a pizza cut into slices">
+            <circle cx="100" cy="100" r="95" fill="#ffcf6e" stroke="#c86a1a" stroke-width="4"/>
+            <!-- Toppings -->
+            <circle cx="70"  cy="70"  r="7" fill="#c0392b"/>
+            <circle cx="130" cy="80"  r="7" fill="#c0392b"/>
+            <circle cx="90"  cy="130" r="7" fill="#c0392b"/>
+            <circle cx="140" cy="140" r="7" fill="#c0392b"/>
+            <circle cx="60"  cy="120" r="7" fill="#c0392b"/>
+            <!-- Slice lines: 8 equal slices -->
+            <g stroke="#c86a1a" stroke-width="3">
+              <line x1="100" y1="5"   x2="100" y2="195"/>
+              <line x1="5"   y1="100" x2="195" y2="100"/>
+              <line x1="32"  y1="32"  x2="168" y2="168"/>
+              <line x1="168" y1="32"  x2="32"  y2="168"/>
+            </g>
+          </svg>
+        </div>
+        <p class="aside">One stock = one slice.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Slide 4: How stocks gain value (Netflix & Nvidia)             -->
+      <!-- ============================================================ -->
+      <section class="chart-slide">
+        <h2>What if you'd bought Netflix in 2010?</h2>
+        <iframe class="chart" src="charts/nflx_price.html" title="Netflix price history"></iframe>
+        <p class="bignum">
+          <span class="old">$100 in 2010</span>
+          <span class="arrow">→</span>
+          <span class="new">$10,429 today</span>
+        </p>
+      </section>
+
+      <section class="chart-slide">
+        <h2>…or Nvidia?</h2>
+        <iframe class="chart" src="charts/nvda_price.html" title="Nvidia price history"></iframe>
+        <p class="bignum">
+          <span class="old">$100 in 2010</span>
+          <span class="arrow">→</span>
+          <span class="new">$57,040 today</span>
+        </p>
+        <p class="aside">That's the same company, just worth way more because lots of people now want a slice.</p>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Slide 5: Risk — not every company wins                        -->
+      <!-- ============================================================ -->
+      <section class="risk-slide">
+        <h2>But… most stocks don't do that.</h2>
+        <p>
+          In 2010, you could just as easily have picked
+          <strong>Blockbuster</strong> — and lost almost everything.
+        </p>
+        <p class="emoji-row">🥚 🧺 ❌</p>
+        <p class="aside">Don't put all your eggs in one basket.</p>
+      </section>
+
+      <section class="chart-slide">
+        <h2>Here's a safer way: buy a slice of <em>everything</em>.</h2>
+        <iframe class="chart" src="charts/sp500_growth.html" title="S&amp;P 500 growth"></iframe>
+        <p class="bignum">
+          <span class="old">$100 in 1990</span>
+          <span class="arrow">→</span>
+          <span class="new">$2,160 today</span>
+        </p>
+        <p class="aside">
+          The S&amp;P 500 is a bundle of the 500 biggest companies.
+          If one company fails, the others pick up the slack.
+        </p>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- Slide 6: Wrap-up                                              -->
+      <!-- ============================================================ -->
+      <section class="wrap-slide">
+        <h2>The secret? <em>Time.</em></h2>
+        <img class="gif"
+             src="https://media.giphy.com/media/l0HlHFRbmaZtBRhXG/giphy.gif"
+             alt="time passing">
+        <p class="callout">Money grows when you give it time.</p>
+        <p class="next-up">Next up: let's open the app and watch <em>your</em> money grow. 📈</p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      transition: "slide",
+      controls: true,
+      progress: true,
+      center: true,
+      slideNumber: "c/t"
+    });
+  </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-11[project]
+[project]
 name = "investing_for_kids"
 version = "0.1.0"
 description = "Local Streamlit app to teach the kids about investing and exponential growth."
@@ -13,6 +13,9 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "ruff>=0.6",
+]
+deck = [
+    "yfinance>=0.2.40",
 ]
 
 [build-system]

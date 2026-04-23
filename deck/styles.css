@@ -1,0 +1,143 @@
+/* Kid-friendly overrides for reveal.js white theme. */
+
+:root {
+  --bg: #fffaf2;
+  --ink: #2a4e4d;
+  --accent: #ff7f2a;
+  --accent-deep: #c86a1a;
+  --soft: #fde4cf;
+}
+
+.reveal {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--bg);
+}
+
+.reveal .slides section {
+  background: var(--bg);
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+  color: var(--ink);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+.reveal h1 { font-size: 3.6em; }
+.reveal h2 { font-size: 2.4em; margin-bottom: 0.4em; }
+
+.reveal em { color: var(--accent-deep); font-style: italic; }
+.reveal strong { color: var(--accent-deep); }
+
+/* --- Slide 1: title --- */
+.title-slide .subtitle {
+  font-size: 1.5em;
+  margin-top: 0.5em;
+  color: var(--ink);
+  opacity: 0.8;
+}
+.title-slide .presenter {
+  margin-top: 2em;
+  font-size: 1em;
+  opacity: 0.6;
+}
+
+/* --- Slide 2: hook --- */
+.hook-slide .gif {
+  max-height: 50vh;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(42, 78, 77, 0.25);
+  margin: 0.6em 0;
+}
+.hook-slide .callout {
+  font-size: 1.6em;
+  margin-top: 0.4em;
+  color: var(--accent-deep);
+}
+
+/* --- Slide 3: concept (stocks) --- */
+.concept-layout {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  justify-content: center;
+  margin-top: 1em;
+}
+.concept-text {
+  flex: 1;
+  text-align: left;
+  max-width: 520px;
+}
+.concept-text p {
+  font-size: 1.2em;
+  line-height: 1.45;
+  margin-bottom: 0.8em;
+}
+.pizza {
+  width: 280px;
+  height: 280px;
+  flex-shrink: 0;
+}
+.aside {
+  margin-top: 1em;
+  font-size: 1.1em;
+  opacity: 0.75;
+  font-style: italic;
+}
+
+/* --- Chart slides --- */
+.chart-slide .chart {
+  width: 100%;
+  height: 58vh;
+  border: none;
+  border-radius: 12px;
+  background: var(--bg);
+  box-shadow: 0 4px 18px rgba(42, 78, 77, 0.15);
+}
+.bignum {
+  margin-top: 0.5em;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+.bignum .old { color: var(--ink); opacity: 0.75; }
+.bignum .arrow { font-size: 1.3em; color: var(--accent); }
+.bignum .new {
+  color: var(--accent-deep);
+  font-weight: 700;
+  font-size: 1.4em;
+}
+
+/* --- Risk slide --- */
+.risk-slide p { font-size: 1.3em; line-height: 1.5; }
+.risk-slide .emoji-row {
+  font-size: 3em;
+  letter-spacing: 0.2em;
+  margin: 0.6em 0;
+}
+
+/* --- Wrap slide --- */
+.wrap-slide .gif {
+  max-height: 40vh;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(42, 78, 77, 0.25);
+  margin: 0.4em 0;
+}
+.wrap-slide .callout {
+  font-size: 1.5em;
+  color: var(--accent-deep);
+}
+.wrap-slide .next-up {
+  margin-top: 1.2em;
+  font-size: 1.15em;
+  opacity: 0.85;
+}
+
+/* Progress bar and controls in the warm palette */
+.reveal .progress { color: var(--accent); }
+.reveal .controls { color: var(--accent-deep); }
