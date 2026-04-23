@@ -2,6 +2,8 @@
 
 import streamlit as st
 
+from investing_for_kids.theoretical import views as theoretical_views
+
 
 def render() -> None:
     """Render the top-level tabbed layout: Theory, Child A, Child B."""
@@ -11,8 +13,7 @@ def render() -> None:
     theory_tab, child_a_tab, child_b_tab = st.tabs(["Theory", "Child A", "Child B"])
 
     with theory_tab:
-        st.header("Theoretical: exponential growth")
-        st.info("Coming in Phase 2 — projections with recurring contributions.")
+        theoretical_views.render()
 
     with child_a_tab:
         st.header("Child A's account")
