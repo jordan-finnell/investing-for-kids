@@ -50,7 +50,7 @@
             </p>
             <p>
               If you own one, you own a little sliver of the company.
-              If the company gets more valuable, your slice does too.
+              If the company gets more valuable (the pizza gets bigger), your slice does too.
             </p>
           </div>
           <!-- Pizza pie: a visual metaphor for ownership slices. -->
@@ -112,7 +112,7 @@
       </section>
 
       <section class="chart-slide">
-        <h2>Here's a safer way: buy a slice of <em>everything</em>.</h2>
+        <h2>Here's a safer way: buy a teeny-tiny slice of <em>everything</em>.</h2>
         <iframe class="chart" src="charts/sp500_growth.html" title="S&amp;P 500 growth"></iframe>
         <p class="bignum">
           <span class="old">$100 in 1990</span>
@@ -148,7 +148,15 @@
       controls: true,
       progress: true,
       center: true,
-      slideNumber: "c/t"
+      slideNumber: "c/t",
+      // Native canvas sized for a typical widescreen — on a larger monitor
+      // reveal will upscale, but we cap maxScale to avoid the giant-text
+      // blowup on ultrawide displays.
+      width: 1600,
+      height: 1000,
+      margin: 0.04,
+      minScale: 0.3,
+      maxScale: 1.6
     });
   </script>
 </body>

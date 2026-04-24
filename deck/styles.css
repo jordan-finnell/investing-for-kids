@@ -25,8 +25,8 @@
   font-weight: 700;
 }
 
-.reveal h1 { font-size: 3.6em; }
-.reveal h2 { font-size: 2.4em; margin-bottom: 0.4em; }
+.reveal h1 { font-size: 2.8em; }
+.reveal h2 { font-size: 1.5em; margin-bottom: 0.3em; line-height: 1.15; }
 
 .reveal em { color: var(--accent-deep); font-style: italic; }
 .reveal strong { color: var(--accent-deep); }
@@ -46,10 +46,11 @@
 
 /* --- Slide 2: hook --- */
 .hook-slide .gif {
-  max-height: 50vh;
+  height: 480px;
+  width: auto;
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(42, 78, 77, 0.25);
-  margin: 0.6em 0;
+  margin: 0.5em 0;
 }
 .hook-slide .callout {
   font-size: 1.6em;
@@ -71,34 +72,37 @@
   max-width: 520px;
 }
 .concept-text p {
-  font-size: 1.2em;
-  line-height: 1.45;
-  margin-bottom: 0.8em;
+  font-size: 1.05em;
+  line-height: 1.4;
+  margin-bottom: 0.7em;
 }
 .pizza {
-  width: 280px;
-  height: 280px;
+  width: 260px;
+  height: 260px;
   flex-shrink: 0;
 }
 .aside {
-  margin-top: 1em;
-  font-size: 1.1em;
+  margin-top: 0.6em;
+  font-size: 1em;
   opacity: 0.75;
   font-style: italic;
 }
 
-/* --- Chart slides --- */
+/* --- Chart slides ---
+   Height in px (not vh) so the iframe scales WITH reveal's transform,
+   not independently of it. Reveal's native canvas is 1600x1000 (after
+   margins ~960 tall), so 540px leaves room for h2 + bignum + aside. */
 .chart-slide .chart {
   width: 100%;
-  height: 58vh;
+  height: 540px;
   border: none;
   border-radius: 12px;
   background: var(--bg);
   box-shadow: 0 4px 18px rgba(42, 78, 77, 0.15);
 }
 .bignum {
-  margin-top: 0.5em;
-  font-size: 1.5em;
+  margin-top: 0.3em;
+  font-size: 1.35em;
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -123,7 +127,8 @@
 
 /* --- Wrap slide --- */
 .wrap-slide .gif {
-  max-height: 40vh;
+  height: 380px;
+  width: auto;
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(42, 78, 77, 0.25);
   margin: 0.4em 0;
