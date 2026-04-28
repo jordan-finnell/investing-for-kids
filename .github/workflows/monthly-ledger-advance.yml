@@ -1,0 +1,37 @@
+name: Monthly ledger advance
+
+on:
+  schedule:
+    - cron: '0 9 1 * *'   # 09:00 UTC on the 1st of each month
+  workflow_dispatch:        # allow manual runs from the Actions tab
+
+permissions:
+  contents: write           # required to push the commit
+
+jobs:
+  advance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install package
+        run: pip install -e .
+
+      - name: Advance ledgers to today
+        run: python -m investing_for_kids.accounts.backup
+
+      - name: Commit and push if changed
+        run: |
+          if [[ -z "$(git status --porcelain data/ledgers/)" ]]; then
+            echo "No ledger changes — nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ledgers/
+          git commit -m "Monthly ledger advance $(date -I)"
+          git push
