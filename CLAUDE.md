@@ -46,7 +46,7 @@ src-layout package under `src/investing_for_kids/`:
 
 - **`accounts/`** — per-child accounts, backend + UI.
   - `config.py` — YAML loader; `AccountConfig` + `RecurringContribution` dataclasses. Default paths are anchored to repo root via `__file__`, so imports work regardless of CWD.
-  - `ledger.py` — CSV daily-snapshot ledger. `materialize_through(account, target_date)` brings the ledger up to any date idempotently (seeds on first run, appends one row per intervening day). `expand_recurring()` handles weekly (weekday anchor) and monthly (day-of-month anchor, clamped to month length) cadences.
+  - `ledger.py` — CSV daily-snapshot ledger. `materialize_through(account, target_date)` brings the ledger up to any date idempotently (seeds on first run, appends one row per intervening day). `expand_recurring()` handles `monthly` (one day-of-month) and `bimonthly` (two days-of-month) cadences; firing days are validated at load time to be in 1..28.
   - `transactions.py` — `record_deposit` / `record_withdrawal`. Withdrawals are rejected if they would drive the balance below zero.
   - `views.py` — per-child Streamlit tab (metrics, dep/withdraw forms, history chart, recent activity).
 

@@ -9,7 +9,6 @@ No Streamlit — pure pandas + stdlib.
 
 from __future__ import annotations
 
-from calendar import monthrange
 from collections import defaultdict
 from collections.abc import Iterator
 from datetime import date, timedelta
@@ -31,8 +30,6 @@ LEDGER_COLUMNS = [
 ]
 
 DAYS_PER_YEAR = 365
-
-_WEEKDAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
 
 
 def _ledger_path(child: str, ledgers_dir: Path | str) -> Path:
@@ -63,32 +60,23 @@ def save_ledger(
 
 
 def _schedule_dates(s: RecurringContribution, from_date: date, to_date: date) -> Iterator[date]:
-    """Yield every date in [from_date, to_date] on which this schedule fires."""
+    """Yield every date in [from_date, to_date] on which this schedule fires.
+
+    Schedule fires on whichever days-of-month are listed in `s.days`
+    (validated at load time to be in 1..28, so firing is uniform across
+    months regardless of length).
+    """
     start = max(s.start_date, from_date)
     end = to_date if s.end_date is None else min(s.end_date, to_date)
     if start > end:
         return
 
-    if s.cadence == "weekly":
-        target = _WEEKDAYS.index(str(s.anchor).lower())
-        d = start
-        while d.weekday() != target:
-            d += timedelta(days=1)
-            if d > end:
-                return
-        while d <= end:
+    firing_days = set(s.days)
+    d = start
+    while d <= end:
+        if d.day in firing_days:
             yield d
-            d += timedelta(days=7)
-    elif s.cadence == "monthly":
-        target = int(s.anchor)
-        d = start
-        while d <= end:
-            effective = min(target, monthrange(d.year, d.month)[1])
-            if d.day == effective:
-                yield d
-            d += timedelta(days=1)
-    else:
-        raise ValueError(f"Unknown cadence: {s.cadence!r}")
+        d += timedelta(days=1)
 
 
 def expand_recurring(

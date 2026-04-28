@@ -19,11 +19,17 @@ DEFAULT_LEDGERS_DIR = _PROJECT_ROOT / "data" / "ledgers"
 
 @dataclass
 class RecurringContribution:
-    """A repeating deposit schedule (weekly on a weekday, or monthly on a day-of-month)."""
+    """A repeating deposit schedule.
+
+    `cadence` is either "monthly" (fires on one day-of-month) or "bimonthly"
+    (fires on two days-of-month). `days` lists the firing days; its length
+    must match the cadence (1 for monthly, 2 for bimonthly). Every day must
+    be in 1..28 so the schedule fires uniformly regardless of month length.
+    """
 
     amount: float
     cadence: str
-    anchor: str | int
+    days: list[int]
     start_date: date
     end_date: date | None = None
 
@@ -62,11 +68,31 @@ def _parse_account(key: str, data: dict[str, Any]) -> AccountConfig:
     )
 
 
+_EXPECTED_DAYS = {"monthly": 1, "bimonthly": 2}
+
+
 def _parse_recurring(rc: dict[str, Any]) -> RecurringContribution:
+    cadence = str(rc["cadence"]).lower()
+    if cadence not in _EXPECTED_DAYS:
+        raise ValueError(
+            f"recurring_contributions.cadence must be 'monthly' or 'bimonthly', got {cadence!r}"
+        )
+    days = [int(d) for d in rc["days"]]
+    expected = _EXPECTED_DAYS[cadence]
+    if len(days) != expected:
+        raise ValueError(
+            f"{cadence} cadence requires exactly {expected} day(s) in `days`, got {days}"
+        )
+    for d in days:
+        if not 1 <= d <= 28:
+            raise ValueError(
+                f"recurring_contributions.days must be between 1 and 28 "
+                f"(so the schedule fires regardless of month length), got {d}"
+            )
     return RecurringContribution(
         amount=float(rc["amount"]),
-        cadence=str(rc["cadence"]).lower(),
-        anchor=rc["anchor"],
+        cadence=cadence,
+        days=days,
         start_date=_as_date(rc["start_date"]),
         end_date=_as_date(rc["end_date"]) if rc.get("end_date") else None,
     )

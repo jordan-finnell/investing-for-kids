@@ -40,9 +40,7 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     slide_indexes = (
-        [int(s) for s in args.slides.split(",")]
-        if args.slides
-        else list(range(NUM_SLIDES))
+        [int(s) for s in args.slides.split(",")] if args.slides else list(range(NUM_SLIDES))
     )
 
     with sync_playwright() as pw:

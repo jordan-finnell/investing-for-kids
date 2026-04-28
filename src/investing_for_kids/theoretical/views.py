@@ -153,15 +153,15 @@ def render() -> None:
             format="%.2f",
         )
     with col5:
-        cadence = st.selectbox("How often?", options=["monthly", "weekly"], index=0)
+        cadence = st.selectbox("How often?", options=["monthly", "bimonthly"], index=0)
 
     annual_rate = annual_rate_pct / 100.0
-    daily_contrib = growth._cadence_to_daily(recurring_amount, cadence)
     daily = growth.compounding_series(
         starting_balance=starting_balance,
         annual_rate=annual_rate,
         days=int(years) * growth.DAYS_PER_YEAR,
-        daily_contribution=daily_contrib,
+        recurring_amount=recurring_amount,
+        cadence=cadence,
     )
 
     final = daily.iloc[-1]

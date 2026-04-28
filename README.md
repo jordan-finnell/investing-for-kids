@@ -41,7 +41,7 @@ ruff check .
 Key points when editing:
 
 - `annual_rate` is stored as a decimal (`0.08` == 8%). Changing it affects **future** ledger rows only; past rows keep their original `rate_applied`, so history stays auditable.
-- `recurring_contributions` supports `weekly` (anchor = weekday name, e.g. `monday`) or `monthly` (anchor = day-of-month, `1`–`31`; clamped to the last day of shorter months). Multiple schedules per child are allowed.
+- `recurring_contributions` supports two cadences: `monthly` with `days: [N]` (1 day), or `bimonthly` with `days: [N, M]` (2 days). Every day must be in `1..28` so firings are uniform across months regardless of length. Multiple schedules per child are allowed.
 - `seed_date` and `seed_balance` are only consulted when the child's ledger CSV doesn't yet exist. Once there's at least one row, the YAML seed fields are ignored — see the *Resetting an account* section below.
 
 Adding a new child is just a new top-level key under `accounts:` — the app picks it up on the next page load and creates a tab automatically.

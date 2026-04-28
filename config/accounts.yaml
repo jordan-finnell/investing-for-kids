@@ -3,11 +3,21 @@ accounts:
     display_name: Child A
     seed_balance: 100.00
     seed_date: 2026-04-22
-    annual_rate: 0.08
-    recurring_contributions: []
+    annual_rate: 0.5
+    recurring_contributions:
+      - amount: 10.00
+        cadence: monthly
+        days: [26]
+        start_date: 2026-04-26
+        end_date: null
   child_b:
     display_name: Child B
     seed_balance: 100.00
     seed_date: 2026-04-22
-    annual_rate: 0.08
-    recurring_contributions: []
+    annual_rate: 0.5
+    recurring_contributions:
+      - amount: 10.00
+        cadence: monthly
+        days: [26]
+        start_date: 2026-04-26
+        end_date: null
