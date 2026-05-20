@@ -1,8 +1,14 @@
 # investing_for_kids
 
-A local-only Streamlit app to help Child A and Child B understand investing — both theoretically (exponential-growth visualizations) and practically (managing simulated investment accounts with daily compounding).
+A local-only Streamlit app to help my kids understand investing — both theoretically (exponential-growth visualizations) and practically (managing simulated investment accounts with daily compounding).
 
-See `starting_vision.md` for the original vision and `plan.md` for the design and implementation plan.
+## About this project
+
+I built this for my own children to give them hands-on experience with compound interest: a Theory tab for projections they can play with, and per-child account tabs where they can track real (simulated) balances, record deposits and withdrawals, and watch their money grow day by day.
+
+This is the public portfolio version — account names are replaced with generic placeholders (`Child A`, `Child B`). The family version lives in a separate private repo and continues to be the one we actually use.
+
+See [plans/starting_vision.md](plans/starting_vision.md) for the original brief and [plans/plan.md](plans/plan.md) for the design and implementation plan.
 
 ## What it does
 
@@ -36,7 +42,7 @@ ruff check .
 
 ## Configuring accounts
 
-`config/accounts.yaml` is the source of truth for every child's account. See `config/accounts_template.yaml` for a fully-commented reference that covers every supported key.
+`config/accounts.yaml` is the source of truth for every child's account. See [config/accounts_template.yaml](config/accounts_template.yaml) for a fully-commented reference that covers every supported key.
 
 Key points when editing:
 

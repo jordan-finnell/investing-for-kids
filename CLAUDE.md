@@ -9,7 +9,7 @@ A local-only Streamlit app to help children (Child A and Child B) understand inv
 ## Environment Setup
 
 ```bash
-source ~/project/investing_for_kids/.venv/bin/activate
+source .venv/bin/activate
 ```
 
 UV is used for venv management. Python 3.13. Always activate the venv before running any Python commands. Installed as an editable package (`uv pip install -e .[dev]`), so imports like `from investing_for_kids.accounts.ledger import materialize_through` work.
@@ -79,7 +79,7 @@ closing_balance = post_txn + interest
 - Python 3.13 only. Use `from __future__ import annotations` and modern type syntax (`list[X]`, `X | None`).
 - Ruff for formatting and linting; both must pass before commit.
 - Docstrings on functions: clear and concise. Minimize inline `#` comments inside function bodies.
-- No heavy type validation — this is a single-owner private project.
+- No heavy type validation — this is a small personal project.
 - Account data is committed to git for backup. Keep data files small and human-readable.
 - No external services, no auth, no multi-user concerns.
 - Streamlit widgets: use the modern `width="stretch"` API, not the deprecated `use_container_width=True`.
@@ -100,4 +100,3 @@ Refresh workflow: `uv pip install -e .[deck]`, then run the two modules in order
 
 - Each phase of work lands as its own PR off `main`, squash-merged.
 - Don't stack branches on unmerged PRs — merge sequentially.
-- The IDE environment has no Windows-style git credential helper; `gh auth setup-git` configures gh as the helper for pushes.

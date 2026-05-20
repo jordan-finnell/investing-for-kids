@@ -1,4 +1,4 @@
-1# Plan: Build the `investing_for_kids` Streamlit app
+# Plan: Build the `investing_for_kids` Streamlit app
 
 ## Context
 
